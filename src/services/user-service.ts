@@ -56,4 +56,21 @@ export class UserService {
 
         return { data: token };
     }
+
+    async getCurrentUser(token: string) {
+        // Find session and join with user
+        const sessionWithUser = await db.query.sessions.findFirst({
+            where: eq(sessions.token, token),
+            with: {
+                user: true
+            }
+        });
+
+        if (!sessionWithUser || !sessionWithUser.user) {
+            throw new Error("unautorized");
+        }
+
+        const { password, ...userWithoutPassword } = sessionWithUser.user;
+        return { data: userWithoutPassword };
+    }
 }
