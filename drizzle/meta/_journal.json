@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1777094224897,
+      "tag": "0000_moaning_obadiah_stane",
+      "breakpoints": true
+    }
+  ]
+}
