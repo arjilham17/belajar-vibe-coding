@@ -1,7 +1,10 @@
-import { mysqlTable, serial, text, varchar } from "drizzle-orm/mysql-core";
+import { mysqlTable, serial, text, varchar, timestamp } from "drizzle-orm/mysql-core";
+import { sql } from "drizzle-orm";
 
 export const users = mysqlTable("users", {
 	id: serial("id").primaryKey(),
-	fullName: text("full_name"),
-	phone: varchar("phone", { length: 256 }),
+	name: varchar("name", { length: 255 }).notNull(),
+	email: varchar("email", { length: 255 }).notNull().unique(),
+	password: varchar("password", { length: 255 }).notNull(),
+	createdAt: timestamp("created_at").default(sql`CURRENT_TIMESTAMP`),
 });
